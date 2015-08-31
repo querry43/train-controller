@@ -1,0 +1,19 @@
+Part List:
+
+1x PCB
+
+4x 1k ohm 1/4 watt
+1x 2.7k ohm 1/4 watt
+1x 300 ohm 1/4 watt
+
+1x 3mm yellow led
+
+1x 2n3906
+1x 2n2222
+
+1x L272
+1x EC2-5NU
+1x MCP4131
+
+5x JST Jumper 2 Wire Assembly (https://www.sparkfun.com/products/9914)
+2x JST Jumper 3 Wire Assembly (https://www.sparkfun.com/products/9915)
