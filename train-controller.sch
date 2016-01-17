@@ -1172,7 +1172,7 @@ These are standard reverse protection diodes and small signal diodes. SMA packag
 <parts>
 <part name="R4" library="SparkFun-Resistors" deviceset="1KOHM-1/4W-5%(PTH)" device="" value="1k"/>
 <part name="R2" library="SparkFun-Resistors" deviceset="1KOHM-1/4W-5%(PTH)" device="" value="1k"/>
-<part name="R3" library="SparkFun-Resistors" deviceset="1KOHM-1/4W-5%(PTH)" device="" value="1k"/>
+<part name="R3" library="SparkFun-Resistors" deviceset="1KOHM-1/4W-5%(PTH)" device="" value="-VAR-"/>
 <part name="R5" library="SparkFun-Resistors" deviceset="1KOHM-1/4W-5%(PTH)" device="" value="1k"/>
 <part name="S1" library="custom-parts" deviceset="EC2-5NU" device="" value="EC2-5NU"/>
 <part name="IC1" library="custom-parts" deviceset="MCP4131" device="" value="MCP4131"/>
