@@ -2424,7 +2424,7 @@ Standard 3-pin 0.1" header. Use with straight break away headers (SKU : PRT-0011
 <instance part="POW" gate="G$1" x="12.7" y="83.82"/>
 <instance part="AUX" gate="G$1" x="88.9" y="83.82"/>
 <instance part="SERIAL" gate="G$1" x="68.58" y="83.82"/>
-<instance part="CTL" gate="G$1" x="50.8" y="81.28"/>
+<instance part="CTL" gate="G$1" x="50.8" y="83.82"/>
 </instances>
 <busses>
 </busses>
@@ -2515,8 +2515,8 @@ Standard 3-pin 0.1" header. Use with straight break away headers (SKU : PRT-0011
 </net>
 <net name="EN" class="0">
 <segment>
-<wire x1="58.42" y1="83.82" x2="60.96" y2="83.82" width="0.1524" layer="91"/>
-<label x="60.96" y="83.82" size="1.778" layer="95"/>
+<wire x1="58.42" y1="86.36" x2="60.96" y2="86.36" width="0.1524" layer="91"/>
+<label x="60.96" y="86.36" size="1.778" layer="95"/>
 <pinref part="CTL" gate="G$1" pin="2"/>
 </segment>
 <segment>
@@ -2625,8 +2625,8 @@ Standard 3-pin 0.1" header. Use with straight break away headers (SKU : PRT-0011
 </net>
 <net name="DIR" class="0">
 <segment>
-<wire x1="58.42" y1="81.28" x2="60.96" y2="81.28" width="0.1524" layer="91"/>
-<label x="60.96" y="81.28" size="1.778" layer="95"/>
+<wire x1="58.42" y1="83.82" x2="60.96" y2="83.82" width="0.1524" layer="91"/>
+<label x="60.96" y="83.82" size="1.778" layer="95"/>
 <pinref part="CTL" gate="G$1" pin="1"/>
 </segment>
 <segment>
