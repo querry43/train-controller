@@ -1,5 +1,6 @@
-tmr.alarm(0, 1000, 0, function()
-  tmr.delay(5000000)
-  print('starting desk train')
-  dofile('run-desk-train.lua')
-end )
+dofile('network.lua')
+Network:load()
+
+dofile('webserver.lua')()
+dofile('webserver-status.lua')
+dofile('webserver-network-config.lua')
