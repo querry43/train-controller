@@ -3187,6 +3187,16 @@ Standard 4-pin 0.1" header. Use with straight break away headers (SKU : PRT-0011
 <wire x1="55.88" y1="66.04" x2="58.42" y2="66.04" width="0.1524" layer="91"/>
 <label x="58.42" y="66.04" size="1.778" layer="95"/>
 </segment>
+<segment>
+<pinref part="IC2" gate="G$1" pin="IN2+"/>
+<wire x1="25.4" y1="38.1" x2="27.94" y2="38.1" width="0.1524" layer="91"/>
+<label x="30.48" y="38.1" size="1.778" layer="95"/>
+</segment>
+<segment>
+<pinref part="IC2" gate="G$1" pin="IN2-"/>
+<wire x1="25.4" y1="35.56" x2="27.94" y2="35.56" width="0.1524" layer="91"/>
+<label x="30.48" y="35.56" size="1.778" layer="95"/>
+</segment>
 </net>
 <net name="12V" class="0">
 <segment>
@@ -3347,16 +3357,6 @@ Standard 4-pin 0.1" header. Use with straight break away headers (SKU : PRT-0011
 </nets>
 </sheet>
 </sheets>
-<errors>
-<approved hash="104,1,81.28,33.02,S1,+,N$2,,,"/>
-<approved hash="104,1,96.52,33.02,S1,-,GND,,,"/>
-<approved hash="113,1,88.9,42.6932,D1,,,,,"/>
-<approved hash="113,1,34.8827,86.5547,TRACK,,,,,"/>
-<approved hash="113,1,17.1027,85.2847,POW,,,,,"/>
-<approved hash="113,1,93.3027,85.2847,AUX,,,,,"/>
-<approved hash="113,1,72.9827,85.2847,SERIAL,,,,,"/>
-<approved hash="113,1,55.2027,84.0147,CTL,,,,,"/>
-</errors>
 </schematic>
 </drawing>
 </eagle>
