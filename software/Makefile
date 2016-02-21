@@ -1,17 +1,13 @@
-
 FIRMWARE := nodemcu-master-9-modules-2016-01-18-03-30-44-float.bin
 
 all:
-
-status:
 
 terminal:
 	nodemcu-uploader terminal
 
 upload:
-	cd external/nodemcu-mcp4131 && nodemcu-uploader upload *.lua
-	cd external/nodemcu-tools   && nodemcu-uploader upload *.lua
-	cd external/nodemcu-tools/webserver && nodemcu-uploader upload *.lua
+	$(MAKE) -C external/nodemcu-mcp4131 upload
+	$(MAKE) -C external/nodemcu-tools upload
 	nodemcu-uploader upload --restart *.lua
 
 flash:
@@ -20,3 +16,5 @@ flash:
 update-submodules:
 	cd external/nodemcu-mcp4131 && git fetch && git reset --hard origin/master
 	cd external/nodemcu-tools   && git fetch && git reset --hard origin/master
+
+.PHONY: all terminal upload flash update-submodules
