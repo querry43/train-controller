@@ -1,0 +1,6 @@
+[submodule "nodemcu-tools"]
+	path = software/external/nodemcu-tools
+	url = https://github.com/querry43/nodemcu-tools
+[submodule "nodemcu-mcp4131"]
+	path = software/external/nodemcu-mcp4131
+	url = https://github.com/querry43/nodemcu-mcp4131
