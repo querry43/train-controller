@@ -9,20 +9,14 @@ Specifications
  * Works with your existing transformer
  * Does not require any modifications to trains or track
  * Auxilary outputs for additional accessories
- * 1A per channel
+ * 700mA per channel
  * Supports both 5V and 3.3V logic
 
 Whistle Board Parts List
 ------------------------
 https://docs.google.com/spreadsheets/d/1KjXTjjhD9g_6WGJ1dTABSkwde-gAP-HaPDzFgPxGlLw/edit#gid=0
 
-Total Cost: $12.30
-
-Whistle Supply Parts List
--------------------------
-https://docs.google.com/spreadsheets/d/1KjXTjjhD9g_6WGJ1dTABSkwde-gAP-HaPDzFgPxGlLw/edit#gid=384509371
-
-Total Cost: $13.88
+Total Cost: $11.81
  
 Output voltage
 --------------
@@ -35,7 +29,3 @@ This board can be assembled for different model scales by adjusting the value of
 | Z     |  8V                | 1.6k ohm |
 | N     | 12V                | 820  ohm |
 | HO    | 16V                | 470  ohm |
-
-Using multiple controllers
---------------------------
-Up to three Whistle Boards can be connected to one microcontroller.  Connect each Whistle Board back to the same Whistle Supply.  Connect the SDI, SCL from each board in parallel but use distinct microcontroller pins for SS, ENABLE, and DIR.
