@@ -8,7 +8,7 @@ terminal:
 upload:
 	$(MAKE) -C external/nodemcu-mcp4131 upload
 	$(MAKE) -C external/nodemcu-tools upload
-	nodemcu-uploader upload --restart *.lua
+	nodemcu-uploader upload --restart *.lua *.html *.js
 
 flash:
 	esptool.py write_flash --verify 0x00000 $(FIRMWARE)
