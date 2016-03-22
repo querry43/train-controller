@@ -25,7 +25,7 @@ function update() {
 		}
 	}
 
-	xmlhttp.open('GET', '/control/api?' + query, true);
+	xmlhttp.open('GET', '/api?' + query, true);
 	xmlhttp.send();
 }
 
