@@ -13,9 +13,12 @@ terminal:
 restart:
 	$(NODEMCU_UPLOADER) $(SPEED) $(PORT) node restart
 
-upload:
+htdocs/control.js.gz: htdocs/control.js
+	gzip -c $< > $@
+
+upload: htdocs/control.js.gz
 	$(NODEMCU_UPLOADER) $(SPEED) $(PORT) upload --compile *.lua htdocs/*.lua
-	$(NODEMCU_UPLOADER) $(SPEED) $(PORT) upload htdocs/*.html htdocs/*.js
+	$(NODEMCU_UPLOADER) $(SPEED) $(PORT) upload htdocs/*.html htdocs/*.gz
 
 upload_all:
 	$(MAKE) -C external/nodemcu-mcp4131 upload
