@@ -20,7 +20,7 @@ upload: htdocs/control.js.gz
 	$(NODEMCU_UPLOADER) $(SPEED) $(PORT) upload --compile *.lua htdocs/*.lua
 	$(NODEMCU_UPLOADER) $(SPEED) $(PORT) upload htdocs/*.html htdocs/*.gz
 
-upload_all:
+upload-all:
 	$(MAKE) -C external/nodemcu-mcp4131 upload
 	$(MAKE) -C external/nodemcu-tools upload
 	$(MAKE) upload
@@ -32,4 +32,4 @@ update-submodules:
 	cd external/nodemcu-mcp4131 && git fetch && git reset --hard origin/master
 	cd external/nodemcu-tools   && git fetch && git reset --hard origin/master
 
-.PHONY: all terminal restart upload flash update-submodules
+.PHONY: all terminal restart upload upload-all flash update-submodules

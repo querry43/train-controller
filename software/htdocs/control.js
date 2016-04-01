@@ -8,6 +8,7 @@ function control(i) {
   return 'Line ' + (i+1) + '<br />'
     + '<output id="speed_val[' + i + ']" for="speed[' + i + ']"></output><br />'
     + '<input type="range" id="speed[' + i + ']" min="-100" max="100" step="10" style="width: 50%;" oninput="controlChange()"><br />'
+    + '^<br />'
     + '<br />';
 }
 
