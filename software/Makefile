@@ -18,7 +18,7 @@ htdocs/control.js.gz: htdocs/control.js
 
 upload: htdocs/control.js.gz
 	$(NODEMCU_UPLOADER) $(SPEED) $(PORT) upload --compile *.lua htdocs/*.lua
-	$(NODEMCU_UPLOADER) $(SPEED) $(PORT) upload htdocs/*.html htdocs/*.gz
+	$(NODEMCU_UPLOADER) $(SPEED) $(PORT) upload htdocs/*.html htdocs/*.gz htdocs/*.css htdocs/*.js
 
 upload-all:
 	$(MAKE) -C external/nodemcu-mcp4131 upload
