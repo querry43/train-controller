@@ -307,8 +307,8 @@ Version 1</text>
 <text x="29.21" y="20.32" size="1.016" layer="25" rot="R90">green</text>
 <text x="62.738" y="20.701" size="1.016" layer="25" rot="R90">orange</text>
 <text x="65.151" y="20.701" size="1.016" layer="25" rot="R90">orange</text>
-<text x="54.991" y="20.701" size="1.016" layer="25" rot="R90">black</text>
-<text x="57.531" y="20.701" size="1.016" layer="25" rot="R90">orange</text>
+<text x="57.6834" y="20.701" size="1.016" layer="25" rot="R90">black</text>
+<text x="54.991" y="20.701" size="1.016" layer="25" rot="R90">orange</text>
 <text x="42.8244" y="11.8618" size="0.8128" layer="21">2N3904</text>
 <rectangle x1="2.413" y1="5.588" x2="4.064" y2="13.462" layer="21"/>
 <rectangle x1="-0.508" y1="3.048" x2="1.524" y2="5.08" layer="21"/>
