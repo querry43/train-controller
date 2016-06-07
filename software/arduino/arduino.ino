@@ -1,22 +1,23 @@
 #include <SPI.h>
 #include <McpDigitalPot.h>
 
-const uint8_t en = 8;
+const uint8_t ss = 8;
 const uint8_t dir = 9;
 const uint8_t maxbuflen = 16;
+const int8_t acceleration = 2;
 
-McpDigitalPot digitalPot = McpDigitalPot(10, 10000);
+McpDigitalPot digitalPot = McpDigitalPot(ss, 10000);
 
 int8_t speed, target_speed;
 
 void setup() {
-  pinMode(en, OUTPUT);
   pinMode(dir, OUTPUT);
   SPI.begin();
 
-  disable();
   speed = 0;
   target_speed = 0;
+
+  set_speed(0);
 
   Serial.begin(9600);
   Serial.println("OK");
@@ -29,11 +30,11 @@ void loop() {
   }
 
   if (speed > target_speed) {
-    set_speed(--speed);
-    Serial.println(speed);
+    speed = max(speed - acceleration, target_speed);
+    set_speed(speed);
   } else if (speed < target_speed) {
-    set_speed(++speed);
-    Serial.println(speed);
+    speed = min(speed + acceleration, target_speed);
+    set_speed(speed);
   }
 }
 
@@ -74,21 +75,9 @@ void run_command(char* command) {
 
   switch (p) {
     case '?':
-      Serial.println("E - Enable");
-      Serial.println("D - Disable");
+      Serial.println("G<speed> - Go, -100 to 100");
       Serial.println("S - Stop");
-      Serial.println("F<speed> - Forward");
-      Serial.println("R<speed> - Reverse");
-      break;
-
-    case 'e':
-      enable();
-      Serial.println("ENABLE OK");
-      break;
-
-    case 'd':
-      disable();
-      Serial.println("DISABLE OK");
+      Serial.println("H - Immediate halt");
       break;
 
     case 's':
@@ -96,16 +85,17 @@ void run_command(char* command) {
       Serial.println("STOP OK");
       break;
 
-    case 'f':
+    case 'g':
       target_speed = v;
-      Serial.print("FORWARD OK: ");
+      Serial.print("GO OK: ");
       Serial.println(v);
       break;
 
-    case 'r':
-      target_speed = v * -1;
-      Serial.print("REVERSE OK: ");
-      Serial.println(v);
+    case 'h':
+      target_speed = 0;
+      speed = 0;
+      Serial.println("HALT OK");
+      set_speed(0);
       break;
 
     default:
@@ -115,12 +105,13 @@ void run_command(char* command) {
   }
 }
 
-void enable() { digitalWrite(en, LOW); speed = 0; target_speed = 0; }
-void disable() { digitalWrite(en, HIGH); speed = 0; target_speed = 0; }
 void set_speed(int8_t s) {
   if (s >= 0) digitalWrite(dir, LOW);
   else        digitalWrite(dir, HIGH);
 
   digitalPot.setResistance(0, map(abs(s), 0, 100, 10000, 0));
+
+  Serial.print("SPEED: ");
+  Serial.println(speed);
   delay(100);
 }
