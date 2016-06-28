@@ -2,12 +2,15 @@ Whistle Board
 ================
 The Whistle Board is a an inexpensive and easily assembled kit for controlling your model trains with a microcontroller.
 
+![Completed Kit](https://raw.githubusercontent.com/querry43/train-controller/master/hardware/images/whistle%20board%20populated.png)
+
 Specifications
 --------------
  * Supports HO, N, and Z scales
  * Control multiple trains with multiple boards
- * Works with your existing transformer
+ * Works with your existing train hardware
  * Does not require any modifications to trains or track
+ * Does not use PWM which can overheat small motors
  * 700mA per channel
  * Supports both 5V and 3.3V logic
 
