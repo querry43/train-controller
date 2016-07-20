@@ -1,5 +1,5 @@
 Whistle Board
-================
+=============
 The Whistle Board is a an inexpensive and easily assembled kit for controlling your model trains with a microcontroller.
 
 ![Completed Kit](https://raw.githubusercontent.com/querry43/train-controller/master/hardware/images/whistle%20board%20populated.png)

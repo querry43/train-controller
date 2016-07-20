@@ -6,7 +6,7 @@ const int8_t acceleration = 2;
 
 class WhistleBoard {
 public:
-  WhistleBoard(const uint8_t ss, const uint8_t dir) : _speed(0), _target_speed(0), _dir(dir), _digital_pot(ss, 10000) {
+  WhistleBoard(const uint8_t ss, const uint8_t dir, const uint8_t index) : _speed(0), _target_speed(0), _dir(dir), _index(index), _digital_pot(ss, 10000) {
     pinMode(_dir, OUTPUT);
   }
 
@@ -30,7 +30,7 @@ public:
  
 private:
   int8_t _speed, _target_speed;
-  uint8_t _dir;
+  uint8_t _dir, _index;
   McpDigitalPot _digital_pot;
 
   WhistleBoard();
@@ -41,22 +41,24 @@ private:
 
     _digital_pot.setResistance(0, map(abs(_speed), 0, 100, 10000, 0));
 
-    Serial.print("SPEED: ");
+    Serial.print("OK: ACCEL ");
+    Serial.print(_index);
+    Serial.print(" ");
     Serial.println(_speed);
     delay(100);
   }
 };
 
 WhistleBoard wbs[] = {
-  WhistleBoard(8, 9),
-  WhistleBoard(6, 7),
+  WhistleBoard(8, 9, 0),
+  WhistleBoard(6, 7, 1),
 };
 
 void setup() {
   SPI.begin();
 
   Serial.begin(9600);
-  Serial.println("OK");
+  Serial.println("READY");
 }
 
 void loop() {
@@ -100,51 +102,94 @@ bool read_command(char* command) {
   }
 }
 
-void run_command(char* command) {
-  char p = tolower(command[0]);
-  uint8_t i = command[1] - '0';
-  int32_t v = strtol(command+2, NULL, 10);
+void run_command(char* line) {
 
+  char command_str[maxbuflen],
+    tok1_str[maxbuflen],
+    tok2_str[maxbuflen];
 
+  strncpy(command_str, strtok(line, " "), maxbuflen-1);
+  strncpy(tok1_str, strtok(NULL, " "), maxbuflen-1);
+  strncpy(tok2_str, strtok(NULL, " "), maxbuflen-1);
 
-  switch (p) {
+  char command_chr = tolower(command_str[0]);
+  int32_t tok1_int = strtol(tok1_str, NULL, 10);
+  int32_t tok2_int = strtol(tok2_str, NULL, 10);
+
+  Serial.print("COMMAND: ");
+  Serial.print(command_str);
+  Serial.print(", TOK1: ");
+  Serial.print(tok1_str);
+  Serial.print(", TOK2: ");
+  Serial.println(tok2_str);
+
+  switch (command_chr) {
     case '?':
-      Serial.println("G<i><speed> - Go, -100 to 100");
-      Serial.println("S<i> - Stop");
-      Serial.println("H - Immediate halt");
-      break;
-
-    case 's':
-      if (i >= 2) {
-        Serial.println("NOT OK: Attempt to index > 2");
-      } else {
-        wbs[i].set_target_speed(0);
-        Serial.print("STOP OK: ");
-        Serial.println(i);
-      }
+      Serial.println("? - This help dialog");
+      Serial.println("GO index speed - Go at given speed, -100 to 100");
+      Serial.println("STOP index - Slow to 0 speed");
+      Serial.println("HALT index - Immediate halt");
+      Serial.println();
+      Serial.println("Commands are case insensitive and can be abbreviated to single characters");
+      Serial.println("In all commands, index is optional and defaults to 0");
       break;
 
     case 'g':
-      if (i >= 2) {
-        Serial.println("NOT OK: Attempt to index > 2");
+      // 0 parameters
+      if (strlen(tok1_str) == 0) {
+        Serial.println("NOT OK: GO Missing parameters");
+        break;
+      // 1 parameter
+      } else if (strlen(tok2_str) == 0) {
+        tok2_int = tok1_int;
+        tok1_int = 0;
+      }
+
+      if (tok1_int < 0 || tok1_int >= 2) {
+        Serial.println("NOT OK: GO Index out of range");
+      } else if (tok2_int < -100 || tok2_int > 100) {
+        Serial.println("NOT OK: GO Value out of range");
       } else {
-        wbs[i].set_target_speed(v);
-        Serial.print("GO OK: ");
-        Serial.print(i);
-        Serial.print(" => ");
-        Serial.println(v);
+        wbs[tok1_int].set_target_speed(tok2_int);
+        Serial.print("OK: GO ");
+        Serial.print(tok1_int);
+        Serial.print(" ");
+        Serial.println(tok2_int);
+      }
+
+      break;
+
+    case 's':
+      // 0 parameters
+      if (strlen(tok1_str) == 0)
+        tok1_int = 0;
+
+      if (tok1_int < 0 || tok1_int >= 2) {
+        Serial.println("NOT OK: STOP Index out of range");
+      } else {
+        wbs[tok1_int].set_target_speed(0);
+        Serial.print("OK: STOP ");
+        Serial.println(tok1_int);
       }
       break;
 
     case 'h':
-      wbs[0].halt();
-      wbs[1].halt();
-      Serial.println("HALT OK");
+      // 0 parameters
+      if (strlen(tok1_str) == 0)
+        tok1_int = 0;
+
+      if (tok1_int < 0 || tok1_int >= 2) {
+        Serial.println("NOT OK: HALT Index out of range");
+      } else {
+        wbs[tok1_int].halt();
+        Serial.print("OK: HALT ");
+        Serial.println(tok1_int);
+      }
       break;
 
     default:
-      Serial.print("NOT OK: ");
-      Serial.println(p);
+      Serial.print("NOT OK: Unknown command: ");
+      Serial.println(command_str);
       break;
   }
 }
