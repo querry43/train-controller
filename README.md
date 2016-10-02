@@ -6,7 +6,7 @@ The Whistle Board is a an inexpensive and easily assembled kit for controlling y
 
 Specifications
 --------------
- * Supports HO, N, and Z scales
+ * Supports N and Z scales
  * Control multiple trains with multiple boards
  * Works with your existing train hardware
  * Does not require any modifications to trains or track
@@ -30,4 +30,3 @@ This board can be assembled for different model scales by adjusting the value of
 |-------|--------------------|----------|
 | Z     |  8V                | 1.6k ohm |
 | N     | 12V                | 820  ohm |
-| HO    | 16V                | 470  ohm |
